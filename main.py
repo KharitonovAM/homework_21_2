@@ -16,7 +16,9 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_response(200) # Отправка кода ответа
         self.send_header("Content-type", "text/html") # Отправка типа данных, который будет передаваться
         self.end_headers() # Завершение формирования заголовков ответа
-        self.wfile.write(bytes("{'message': 'OK'}", "utf-8")) # Тело ответа
+        with open('main.html', encoding='utf-8') as f:
+            my_data = f.read()
+            self.wfile.write(bytes(my_data, "utf-8")) # Тело ответа
 
 if __name__ == "__main__":
     # Инициализация веб-сервера, который будет по заданным параметрах в сети
