@@ -8,23 +8,33 @@
 <body>
 <div class="row">
     <div class="col-1 bg-dark">
-        <div class="sidebar d-flex flex-column " style="height: 98vh;">
+        <div class="sidebar d-flex flex-column" style="height: 99vh;">
             <nav class="navbar">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="ya.ru">
                   <img src="..\logo\logo.jpeg" alt="Bootstrap" width="30" height="24">
                 </a>
                   <h3 class="text-center text-white">Меню</h3>
             </nav>
-
-                <a href="http://localhost:8080" class="active">Главная</a>
-                <a href="http://localhost:8080/category_1">Категории</a>
-                <a href="http://localhost:8080/catalog">Заказы</a>
-                <a href="http://localhost:8080/contact">Контакты</a>
-                <div class="profile-menu mt-auto">
-                    <a href="https://my.sky.pro">Профиль</a>
-                    <a href="#">Выход</a>
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="category-1.html">Категории</a></li>
+                    <li><a href="catalogue.html">Каталог</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="profile-menu mt-auto">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Пользователь
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Профиль</a></li>
+                        <li><a class="dropdown-item" href="#">Выход</a></li>
+                    </ul>
                 </div>
             </div>
+        </div>
     </div>
     <div class="col">
         <h1 class="text-center m-5">Категория 1</h1>

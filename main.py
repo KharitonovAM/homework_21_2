@@ -1,16 +1,36 @@
-# This is a sample Python script.
+# Импорт встроенной библиотеки для работы веб-сервера
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import time
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Для начала определим настройки запуска
+hostName = "localhost" # Адрес для доступа по сети
+serverPort = 8080 # Порт для доступа по сети
 
+class MyServer(BaseHTTPRequestHandler):
+    """
+        Специальный класс, который отвечает за
+        обработку входящих запросов от клиентов
+    """
+    def do_GET(self):
+        """ Метод для обработки входящих GET-запросов """
+        self.send_response(200) # Отправка кода ответа
+        self.send_header("Content-type", "text/html") # Отправка типа данных, который будет передаваться
+        self.end_headers() # Завершение формирования заголовков ответа
+        self.wfile.write(bytes("{'message': 'OK'}", "utf-8")) # Тело ответа
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+if __name__ == "__main__":
+    # Инициализация веб-сервера, который будет по заданным параметрах в сети
+    # принимать запросы и отправлять их на обработку специальному классу, который был описан выше
+    webServer = HTTPServer((hostName, serverPort), MyServer)
+    print("Server started http://%s:%s" % (hostName, serverPort))
 
+    try:
+        # Cтарт веб-сервера в бесконечном цикле прослушивания входящих запросов
+        webServer.serve_forever()
+    except KeyboardInterrupt:
+        # Корректный способ остановить сервер в консоли через сочетание клавиш Ctrl + C
+        pass
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    # Корректная остановка веб-сервера, чтобы он освободил адрес и порт в сети, которые занимал
+    webServer.server_close()
+    print("Server stopped.")
